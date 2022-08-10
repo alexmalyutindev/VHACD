@@ -1,3 +1,5 @@
+#define ENABLE_VHACD_IMPLEMENTATION 1
+
 #include "VHACD.h"
 
 #ifdef WIN32
@@ -50,7 +52,7 @@ EXTERN uint32_t GetNConvexHulls(
     return vhacd->GetNConvexHulls();
 }
 
-EXTERN void GetConvexHull(
+EXTERN bool GetConvexHull(
     void* pVHACD,
     const uint32_t index,
     void* ch)
@@ -58,3 +60,5 @@ EXTERN void GetConvexHull(
     auto vhacd = (VHACD::IVHACD*)pVHACD;
     return vhacd->GetConvexHull(index, *(VHACD::IVHACD::ConvexHull *)ch);
 }
+
+int main(void) {return 0;}
