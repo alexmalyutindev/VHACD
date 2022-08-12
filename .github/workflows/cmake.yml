@@ -43,10 +43,10 @@ jobs:
           mkdir build
           cmake -S . -B build
       - name: build
-        run: cmake --build build --config Release
+        run: cmake --build src/build --config Release
       
       - uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}
-          path: build/dll/${{ matrix.dll_name }}
+          path: src/build/dll/${{ matrix.dll_name }}
       
