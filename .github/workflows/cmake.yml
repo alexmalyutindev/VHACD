@@ -1,0 +1,52 @@
+name: CMake
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+  
+jobs:
+
+  build:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - platform: windows-latest
+            cmake_type: "Visual Studio 16 2019"
+            dll_name: "Release/libvhacd.dll"
+            target_dll_name: "libvhacd.dll"
+          - platform: ubuntu-latest
+            cmake_type: "Unix Makefiles"
+            dll_name: "liblibvhacd.so"
+            target_dll_name: "liblibvhacd.so"
+          - platform: macos-latest
+            cmake_type: "Unix Makefiles"
+            dll_name: "liblibvhacd.dylib"
+            target_dll_name: "liblibvhacd.bundle"
+
+    runs-on: ${{ matrix.platform }}
+    
+    steps:
+    
+      - uses: actions/checkout@v1
+      - uses: ilammy/msvc-dev-cmd@v1.5.0
+    
+      - name: configure
+        run: |
+          cd include
+          mkdir build
+          cmake -S . -B build
+      - name: build
+        run: cmake --build build --config Release
+      
+      - uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.platform }}
+          path: build/dll/${{ matrix.dll_name }}
+      
