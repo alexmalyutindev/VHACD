@@ -8,6 +8,8 @@
 #define EXTERN  extern "C"
 #endif
 
+EXTERN enum class FillMode;
+
 EXTERN void* CreateVHACD()
 {
     return VHACD::CreateVHACD();

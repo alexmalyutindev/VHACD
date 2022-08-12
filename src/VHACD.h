@@ -288,10 +288,10 @@ struct BoundsAABB
 */
 enum class FillMode
 {
-    FLOOD_FILL, // This is the default behavior, after the voxelization step it uses a flood fill to determine 'inside'
+    FLOOD_FILL = 0, // This is the default behavior, after the voxelization step it uses a flood fill to determine 'inside'
                 // from 'outside'. Howerver, meshes with holes can fail and create hollow results.
-    SURFACE_ONLY, // Only consider the 'surface', will create 'skins' with hollow centers.
-    RAYCAST_FILL, // Uses raycasting to determine inside from outside.
+    SURFACE_ONLY = 1, // Only consider the 'surface', will create 'skins' with hollow centers.
+    RAYCAST_FILL = 2, // Uses raycasting to determine inside from outside.
 };
 
 class IVHACD
