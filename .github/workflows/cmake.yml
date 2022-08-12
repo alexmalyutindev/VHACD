@@ -20,15 +20,15 @@ jobs:
           - platform: windows-latest
             cmake_type: "Visual Studio 16 2019"
             dll_name: "Release/libvhacd.dll"
-            target_dll_name: "libvhacd.dll"
+            target_dll_name: "vhacd.dll"
           - platform: ubuntu-latest
             cmake_type: "Unix Makefiles"
-            dll_name: "liblibvhacd.so"
-            target_dll_name: "liblibvhacd.so"
+            dll_name: "libvhacd.so"
+            target_dll_name: "libvhacd.so"
           - platform: macos-latest
             cmake_type: "Unix Makefiles"
-            dll_name: "liblibvhacd.dylib"
-            target_dll_name: "liblibvhacd.bundle"
+            dll_name: "libvhacd.dylib"
+            target_dll_name: "libvhacd.bundle"
 
     runs-on: ${{ matrix.platform }}
     
@@ -51,5 +51,5 @@ jobs:
       - uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.platform }}
-          path: src/build/dll/${{ matrix.dll_name }}
+          path: src/build/${{ matrix.dll_name }}
       
