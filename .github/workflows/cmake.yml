@@ -19,7 +19,7 @@ jobs:
         include:
           - platform: windows-latest
             cmake_type: "Visual Studio 16 2019"
-            dll_name: "Release/libvhacd.dll"
+            dll_name: "Release/vhacd.dll"
             target_dll_name: "vhacd.dll"
           - platform: ubuntu-latest
             cmake_type: "Unix Makefiles"
